@@ -1,15 +1,8 @@
 def run():
-    n = int(input('Ingrese un número: '))
-    potencia = n - 1
-    num = 0
-
+    n = int(input('Ingrese un numero: '))
+    
     for i in range (1, n + 1):
-        num_aux = i * (10**potencia)
-        num = num + num_aux
-        potencia = potencia - 1
-
-
-    print(str(num))
+        print(str(i), end="")
            
 
 if __name__ == '__main__':
