@@ -1,6 +1,6 @@
 def run():
     my_list= [1, 'Hello', True, 4.5]
-    y_dict = {"firstname": "Facundo", "lastname": "García"}
+    my_dict = {"firstname": "Facundo", "lastname": "García"}
 
 # Esto es una lista de diccionarios
     super_list = [
@@ -12,11 +12,22 @@ def run():
     ]
 
 # Esto es un diccionario de listas
-    supper_dict = {
+    super_dict = {
         "natural_nums": [1, 2, 3, 4, 5],
         "integer_nums": [-1, -2, 0, 4, 5],
-        "floatingn_nums": [1.1, 4.5, 6.43],
+        "floatingn_nums": [1.1, 4.5, 6.43]
     }
+
+# Imprimo el super diccionario
+    # for key, value in super_dict.items():
+    #     print(key, "-", value)
+
+# Imprimo la super lista 
+    for diccionario in super_list:
+        for key, value in diccionario.items():
+            print (key, "-", value)
+
+
 
 if __name__ == '__main__':
     run()
