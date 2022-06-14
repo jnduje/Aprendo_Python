@@ -1,3 +1,7 @@
 #Archivos y carpetas a ignorar por git
 
 venv
+*.jpg
+*.png
+*.zip
+*.zar
