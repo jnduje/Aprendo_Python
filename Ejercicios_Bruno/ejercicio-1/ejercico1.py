@@ -1,6 +1,8 @@
 from playwright.sync_api import Playwright, sync_playwright, expect
-from skimage import color
-from skimage import io
+from PIL import Image
+from datetime import datetime, date, time, timezone
+from pytz import utc
+import gzip
 
 
 
@@ -20,8 +22,23 @@ def run(playwright: Playwright) -> None:
     context.close()
     browser.close()
 
-    img = io.imread('firstprint.jpg')
-    imgGray = color.rgb2gray(img)
+    # Trabajo con las fechas
+    datetime_print = datetime.now(tz=timezone.utc)
+    name_print = datetime_print.strftime("%d%m%Y_%H%M%S")
+    
+    # Abro imagen, convierto a escala de grises y luego la guardo con otro nombre
+    img = Image.open('firstprint.jpg')
+    imgGray = img.convert('L')
+    imgGray.save('IMG_' + name_print + '.jpg')
+
+    
+
+
+
+
+    
+
+
 
 with sync_playwright() as playwright:
     run(playwright)
