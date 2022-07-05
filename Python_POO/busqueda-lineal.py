@@ -16,6 +16,7 @@ if __name__ == '__main__':
     objetivo = int(input('Que numero quieres encontrar? '))
 
     lista = [random.randint(0, 100) for i in range(tamano_de_lista)]
+    
 
     encontrado = busqueda_lineal(lista, objetivo)
     print(lista)
