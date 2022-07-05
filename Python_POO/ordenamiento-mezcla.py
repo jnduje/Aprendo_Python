@@ -45,9 +45,10 @@ def ordenamiento_por_mezcla(lista):
 
 
 if __name__ == '__main__':
-    tamano_de_lista = int(input('De que tamano sera la lista? '))
+    #tamano_de_lista = int(input('De que tamano sera la lista? '))
 
-    lista = [random.randint(0, 100) for i in range(tamano_de_lista)]
+    #lista = [random.randint(0, 100) for i in range(tamano_de_lista)]
+    lista = [3,29,10,14,37,14,5,8]
     print(lista)
     print('-' * 20)
 
