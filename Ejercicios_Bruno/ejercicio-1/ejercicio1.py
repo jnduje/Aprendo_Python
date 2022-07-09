@@ -1,13 +1,12 @@
+from pickle import FALSE, TRUE
 from playwright.sync_api import Playwright, sync_playwright, expect
 from PIL import Image
 from datetime import datetime, date, time, timezone
 from pytz import utc
 import gzip
 import shutil
+from os import remove, path
 import os
-
-
-
 
 def run(playwright: Playwright) -> None:
     # browser = playwright.chromium.launch(headless=)
@@ -35,14 +34,23 @@ def run(playwright: Playwright) -> None:
     imgGray = img.convert('L')
     imgGray.save('IMG_' + name_print + '.jpg')
 
-    #----------------------------------------------------   
-
+    #Comprimo la imagen  
     with open('IMG_' + name_print + '.jpg', 'rb') as f_in:
-        with gzip.open('backup_' + backup_name + ".jpg.gz", "wb") as f_out:
+        with gzip.open('IMG_' + name_print + '.jpg.gz', "wb") as f_out:
             shutil.copyfileobj(f_in, f_out)
-    
 
-   # compress(backup_name, data)
+    #Verifico si existe la carpeta sino la creo
+    if path.exists('BACKUP_' + backup_name) == False:
+        os.makedirs('BACKUP_' + backup_name)
+   
+    source = 'IMG_' + name_print + '.jpg.gz'
+    destination = 'BACKUP_' + backup_name + '\\' + 'IMG_' + name_print + '.jpg.gz'
+    shutil.move(source,destination)
+
+    #Elimino los archivos sobrantes
+    os.remove('firstprint.jpg')
+    os.remove('IMG_' + name_print + '.jpg')
+   
     
 with sync_playwright() as playwright:
     run(playwright)
