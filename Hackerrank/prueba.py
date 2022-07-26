@@ -1,29 +1,45 @@
 
-def print_formatted(n):
+def print_rangoli(size):
+    alphabet = ['','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    #with = ((size * 2)-1) + ((size * 2)-2)
+    with_rangoli = (4*size) - 3
+    list_aux = []
 
-    row_with = len(bin(n)[2:])
+    # Imprimo primer línea
+    str_aux = alphabet[size]
+    print(str_aux.center(with_rangoli,"-"))
 
-    for i in range(0, n):
-        i += 1
-        str_dec = str(i)
-        str_oct = str(oct(i))
-        str_hex = hex(i)
-        str_bin = bin(i)
-       # print(f'{i} {str_oct[2:].rjust(row_with)} {str_hex[2:].upper().rjust(row_with)} {str_bin[2:].rjust(row_with)}')
-        print(f'{str_dec.rjust(row_with)}', end = " ")
-        print(f'{str_oct[2:].rjust(row_with)}', end = " ")
-        print(f'{str_hex[2:].upper().rjust(row_with)}', end = " ")
-        print(f'{str_bin[2:].rjust(row_with)}')
+    # Imprimo primer recursiva
+    for new_range in range(1, size-1):   
+        breakpoint()  
+        for i in range(1, new_range):
+            list_aux.append(alphabet[size - i])
+            
+
+        # for i in range(, 1, -1):
+        #     list_aux.append(alphabet[i])
+
+            str_aux = "-".join(list_aux)
+        print(str_aux.center(with_rangoli,"-"))
+
+
+    # for i in range(size):
+    #     list_aux.append(alphabet[size - i])
+    # for i in range(size+1):
+    #     list_aux.append(alphabet[i])
+    # str_aux = "-".join(list_aux)
+    # print(list_aux) 
+    # print(str_aux)
+
+    #print(alphabet[size-1].center(with_rangoli,"-"))
+    #print(str_aux.center(with_rangoli,"-"))
+
+
+
+
+
 
 
 if __name__ == '__main__':
     n = int(input())
-    print_formatted(n)
-
-    # Octal oct(num)
-    # Binario bin(num)
-    # Hexadecimal hex(num)   
-    
-    
-
-   
+    print_rangoli(n)
