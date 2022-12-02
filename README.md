@@ -11,3 +11,7 @@ Los últimos son del programa avanzado de Platzi
 Fecha : 2022 - 05 - 16
 
 Debido a que tenía una inconsitencia entre la notebook de casa y la notebook del trabajo eliminé el repositorio en la Asus y lo vuelvo a clonar. 
+
+###Nuevo
+Fecha: 02/12/2022
+Agrego llave SSH en la notebook de lali
