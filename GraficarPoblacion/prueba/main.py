@@ -1,11 +1,11 @@
 import prueba_char
 
-values= ['A','B', 'C']
-labels= [100, 200, 300]
+x= ['A','B', 'C']
+y= [100, 200, 300]
 
 
 def run():
-    prueba_char.generate_char(values, labels)
+    prueba_char.generate_char(x, y)
 
 
 if __name__ == '__main__':
