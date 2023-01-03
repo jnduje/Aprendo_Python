@@ -1,6 +1,6 @@
 # GRAFICAR POBLACION
 
-##Tener en cuenta
+## Tener en cuenta
 Para correr el proyecto en tu máquina debes tener el cuenta los siguientes comandos: 
 
 ```sh
