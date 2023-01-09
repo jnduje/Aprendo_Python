@@ -1,0 +1,12 @@
+# Defino una etiqueta
+services:
+  app-csv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+# Etiqueta volumenes para que se actualicen los cambios que realizo en los archivos del local dentro del contenedor
+    volumes:
+      - .:/app
+
+# Lo anterior significa que en este proyecto, todos archivos (.) estén enlazados con la carpeta /app
