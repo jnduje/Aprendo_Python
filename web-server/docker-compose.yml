@@ -1,0 +1,15 @@
+# Defino una etiqueta (en este caso el nombre del contenedor es web-server)
+services:
+  web-server: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+# Etiqueta volumenes para que se actualicen los cambios que realizo en los archivos del local dentro del contenedor
+#  significa que en este proyecto, todos archivos (.) estén enlazados con la carpeta /app    
+    volumes:
+      - .:/app
+
+# Unir el puerto de mi máquina con el puerto del contenedor
+    ports:
+      - '80:80'
