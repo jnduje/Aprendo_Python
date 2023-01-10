@@ -15,3 +15,7 @@ Debido a que tenía una inconsitencia entre la notebook de casa y la notebook de
 ### Nuevo 2
 Fecha: 02/12/2022
 Agrego llave SSH en la notebook de lali
+
+### Nuevo 3
+Fecha: 10/01/2023
+Agrego curso de entornos virtuales y pip
