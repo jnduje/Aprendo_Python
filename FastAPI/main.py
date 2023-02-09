@@ -1,6 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI         #FastAPI trabaja sobre Pydantic
 from fastapi import Body
 
 app = FastAPI()
@@ -21,7 +21,7 @@ def home():         #Path function
     return {'Hello': 'World'}
 
 #Request and Response Body
-@app.post('/person/new')
-def create_person(person: Person = Body (...)):
+@app.post('/person/new') # post es un método que se utiliza cuando el cliente envía a la pág web
+def create_person(person: Person = Body (...)): # EL "..." significa que ese parámetro es obligatorio
     return person
 
