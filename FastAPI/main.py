@@ -1,17 +1,64 @@
+#Python
 from typing import Optional
-from pydantic import BaseModel
+from enum import Enum
+
+#Pydantic
+from pydantic import BaseModel, EmailStr
+from pydantic import Field  #Field igual a Body, Query y Path pero está directamente realcionada a Pydantic
+
+#FastAPI
 from fastapi import FastAPI         #FastAPI trabaja sobre Pydantic
 from fastapi import Body, Query, Path
 
 app = FastAPI()
 
 #Models
+class HairColor (Enum):
+    white = "white"
+    brown = "brown"
+    black = "black"
+    blonde = "blonde"
+    red = "red"
+
+class Location(BaseModel):
+    city: str  = Field(
+        ...,
+        min_items=1,
+        max_length=50
+    )
+    state: str = Field(
+        ...,
+        min_items=1,
+        max_length=50
+    )
+    country: str = Field(
+        ...,
+        min_items=1,
+        max_length=50
+    )
+
 class Person(BaseModel):
-    first_name: str
-    last_name: str
-    age: int
-    hair_color: Optional[str] = None
-    is_married: Optional[bool] = None
+    first_name: str = Field(
+        ...,
+        min_items=1,
+        max_length=50
+    )
+    last_name: str = Field(
+        ...,
+        min_items=1,
+        max_length=50
+    )
+    age: int = Field(
+        ...,
+        gt=1,
+        le=115
+    )
+    hair_color: Optional[HairColor] = Field(default=None)
+    is_married: Optional[bool] = Field(default=None)
+    mail: EmailStr = Field(
+        ...,
+        
+    )
 
 
 
@@ -54,3 +101,19 @@ def show_person(
         description="It's the description of Person ID")
 ):
     return {person_id: 'It exists!'}
+
+# Validations: Request Body
+@app.put('/person/{person_id}')
+def update_person(
+    person_id: int = Path(
+        ...,
+        title= 'Person ID',
+        description= 'This is a Person ID',
+        gt=0
+    ),
+    person: Person = Body(...),
+    location: Location = Body(...)
+):
+    results = person.dic()
+    results.update(location.dic())
+    return results
