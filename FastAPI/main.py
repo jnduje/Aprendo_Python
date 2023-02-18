@@ -3,7 +3,7 @@ from typing import Optional
 from enum import Enum
 
 #Pydantic
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from pydantic import Field  #Field igual a Body, Query y Path pero está directamente realcionada a Pydantic
 
 #FastAPI
@@ -21,31 +21,19 @@ class HairColor (Enum):
     red = "red"
 
 class Location(BaseModel):
-    city: str  = Field(
-        ...,
-        min_items=1,
-        max_length=50
-    )
-    state: str = Field(
-        ...,
-        min_items=1,
-        max_length=50
-    )
-    country: str = Field(
-        ...,
-        min_items=1,
-        max_length=50
-    )
+    city: str  
+    state: str 
+    country: str 
 
 class Person(BaseModel):
     first_name: str = Field(
         ...,
-        min_items=1,
+        min_length=1,
         max_length=50
     )
     last_name: str = Field(
         ...,
-        min_items=1,
+        min_length=1,
         max_length=50
     )
     age: int = Field(
@@ -55,21 +43,16 @@ class Person(BaseModel):
     )
     hair_color: Optional[HairColor] = Field(default=None)
     is_married: Optional[bool] = Field(default=None)
-    mail: EmailStr = Field(
-        ...,
-        
-    )
+    
 
-
-
-#Path operation decorator. Utiliza el métogo get que viene de la instancia app.
+#Path operation decorator. Utiliza el método get que viene de la instancia app.
 @app.get('/')
 def home():         #Path function
     return {'Hello': 'World'}
 
 #Request and Response Body
 @app.post('/person/new') # post es un método que se utiliza cuando el cliente envía a la pág web
-def create_person(person: Person = Body (...)): # EL "..." significa que ese parámetro es obligatorio
+def create_person(person: Person = Body (...)): # El "..." significa que ese parámetro es obligatorio
     return person
 
 #Validations: Query Parameters
@@ -114,6 +97,6 @@ def update_person(
     person: Person = Body(...),
     location: Location = Body(...)
 ):
-    results = person.dic()
-    results.update(location.dic())
+    results = person.dict()
+    results.update(location.dict())
     return results
